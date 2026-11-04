@@ -1,0 +1,24 @@
+[device]
+# 留空时自动查找雷电 ADB，并选择唯一在线的设备。
+# 本机设置请写入 automation.local.toml，避免提交个人安装路径。
+adb_path = ""
+serial = ""
+timeout = 30
+
+[automation]
+screenshots_dir = "artifacts/screenshots"
+scripts_dir = "scripts"
+
+[daily_hero]
+# 首次挑战之外，最多额外重试 10 次；同一副本累计失败 11 次后放弃。
+max_retries = 10
+poll_interval = 0.35
+# 任意两次点击至少间隔 1 秒；点击后观察 2 秒，原页面仍在才补点。
+min_click_interval = 1.0
+click_retry_interval = 2.0
+# 点击未生效最多补点 3 次，与战斗失败的重试次数分别计数。
+max_click_retries = 3
+transition_timeout = 30
+max_runtime = 7200
+# 0 表示遍历所有未完成副本；调试时可设为 1。
+max_dungeons = 0

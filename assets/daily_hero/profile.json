@@ -1,0 +1,513 @@
+{
+  "reference_size": [
+    1920,
+    1080
+  ],
+  "templates": {
+    "adventure": {
+      "file": "adventure.png",
+      "search": [
+        1400,
+        500,
+        1760,
+        860
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "world_button": {
+      "file": "world_button.png",
+      "search": [
+        1600,
+        760,
+        1905,
+        960
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "world_anchor": {
+      "file": "world_anchor.png",
+      "search": [
+        90,
+        225,
+        485,
+        500
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "world_close": {
+      "file": "world_close.png",
+      "search": [
+        750,
+        940,
+        1190,
+        1040
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "normal_dragon": {
+      "file": "normal_dragon.png",
+      "search": [
+        430,
+        170,
+        640,
+        370
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "hero_dragon": {
+      "file": "hero_dragon.png",
+      "search": [
+        430,
+        170,
+        640,
+        370
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "panel_close": {
+      "file": "panel_close.png",
+      "search": [
+        1335,
+        172,
+        1495,
+        330
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "challenge": {
+      "file": "challenge.png",
+      "search": [
+        700,
+        827,
+        1220,
+        976
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "skip": {
+      "file": "skip.png",
+      "search": [
+        840,
+        0,
+        1080,
+        155
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "victory": {
+      "file": "victory.png",
+      "search": [
+        600,
+        25,
+        1340,
+        340
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "defeat": {
+      "file": "defeat.png",
+      "search": [
+        600,
+        20,
+        1340,
+        360
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "next_stage": {
+      "file": "next_stage.png",
+      "search": [
+        630,
+        807,
+        964,
+        942
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "next_disabled": {
+      "file": "next_disabled.png",
+      "search": [
+        630,
+        807,
+        964,
+        942
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "exit_battle": {
+      "file": "exit_battle.png",
+      "search": [
+        960,
+        795,
+        1270,
+        952
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "marker": {
+      "file": "marker.png",
+      "search": [
+        130,
+        185,
+        1740,
+        990
+      ],
+      "threshold": 0.82,
+      "max_error": 38
+    },
+    "world_marker": {
+      "file": "world_marker.png",
+      "search": [
+        160,
+        230,
+        1720,
+        820
+      ],
+      "threshold": 0.82,
+      "max_error": 38
+    },
+    "region_west": {
+      "file": "region_west.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_ring": {
+      "file": "region_ring.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_cursed": {
+      "file": "region_cursed.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_flame": {
+      "file": "region_flame.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_sky": {
+      "file": "region_sky.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_maelstrom": {
+      "file": "region_maelstrom.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_dream": {
+      "file": "region_dream.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_demon": {
+      "file": "region_demon.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_sumeru": {
+      "file": "region_sumeru.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_etsam": {
+      "file": "region_etsam.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_otherworld": {
+      "file": "region_otherworld.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "region_palaces": {
+      "file": "region_palaces.png",
+      "search": [
+        100,
+        235,
+        1740,
+        840
+      ],
+      "threshold": 0.84,
+      "max_error": 30
+    },
+    "reward_header": {
+      "file": "reward_header.png",
+      "search": [
+        600,
+        200,
+        1360,
+        450
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "claim_reward": {
+      "file": "claim_reward.png",
+      "search": [
+        770,
+        660,
+        1160,
+        815
+      ],
+      "threshold": 0.86,
+      "max_error": 30
+    },
+    "world_pointer": {
+      "file": "world_pointer.png",
+      "search": [
+        130,
+        235,
+        1750,
+        835
+      ],
+      "threshold": 0.78,
+      "max_error": 30
+    },
+    "cursed_landmark": {
+      "file": "cursed_landmark.png",
+      "search": [250, 610, 580, 760],
+      "threshold": 0.9,
+      "max_error": 20
+    }
+  },
+  "obscured_markers": [
+    {
+      "name": "marker_freyes_obscured",
+      "anchor": "cursed_landmark",
+      "badge_search_offset": [237, 239, 272, 274],
+      "hsv_lower": [3, 120, 100],
+      "hsv_upper": [30, 255, 255],
+      "min_pixels": 45
+    }
+  ],
+  "regions": [
+    {
+      "key": "west",
+      "name": "西部大陆",
+      "min_level": 1,
+      "template": "region_west",
+      "marker_search_offset": [
+        -5,
+        -135,
+        117,
+        -2
+      ]
+    },
+    {
+      "key": "ring",
+      "name": "环形领地",
+      "min_level": 20,
+      "template": "region_ring",
+      "marker_search_offset": [
+        -19,
+        -81,
+        122,
+        -1
+      ]
+    },
+    {
+      "key": "cursed",
+      "name": "诅咒荒野",
+      "min_level": 35,
+      "template": "region_cursed",
+      "marker_search_offset": [
+        -19,
+        -94,
+        136,
+        1
+      ]
+    },
+    {
+      "key": "flame",
+      "name": "烈焰深渊",
+      "min_level": 55,
+      "template": "region_flame",
+      "marker_search_offset": [
+        -7,
+        -95,
+        130,
+        1
+      ]
+    },
+    {
+      "key": "sky",
+      "name": "天域",
+      "min_level": 60,
+      "template": "region_sky",
+      "marker_search_offset": [
+        -4,
+        -91,
+        138,
+        2
+      ]
+    },
+    {
+      "key": "maelstrom",
+      "name": "大漩涡",
+      "min_level": 80,
+      "template": "region_maelstrom",
+      "marker_search_offset": [
+        -10,
+        -99,
+        148,
+        1
+      ]
+    },
+    {
+      "key": "dream",
+      "name": "奇幻梦境",
+      "min_level": 95,
+      "template": "region_dream",
+      "click_offset": [0, -60],
+      "marker_search_offset": [
+        -9,
+        -109,
+        144,
+        1
+      ]
+    },
+    {
+      "key": "demon",
+      "name": "魔都",
+      "min_level": 110,
+      "template": "region_demon",
+      "marker_search_offset": [
+        -5,
+        -90,
+        155,
+        2
+      ]
+    },
+    {
+      "key": "sumeru",
+      "name": "须弥",
+      "min_level": 120,
+      "template": "region_sumeru",
+      "marker_search_offset": [
+        -20,
+        -116,
+        156,
+        3
+      ]
+    },
+    {
+      "key": "etsam",
+      "name": "伊特萨姆",
+      "min_level": 128,
+      "template": "region_etsam",
+      "marker_search_offset": [
+        -11,
+        -128,
+        149,
+        3
+      ]
+    },
+    {
+      "key": "otherworld",
+      "name": "异界幻世",
+      "min_level": 149,
+      "template": "region_otherworld",
+      "click_offset": [0, -60],
+      "marker_search_offset": [
+        -21,
+        -102,
+        149,
+        4
+      ]
+    },
+    {
+      "key": "palaces",
+      "name": "十二宫",
+      "min_level": 100,
+      "template": "region_palaces",
+      "marker_search_offset": [
+        -22,
+        -109,
+        144,
+        4
+      ]
+    }
+  ]
+}

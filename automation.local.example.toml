@@ -1,0 +1,8 @@
+# 复制为 automation.local.toml 后修改。只需填写要覆盖的参数。
+# Windows 路径使用单引号，保留反斜杠。
+[device]
+adb_path = ''
+serial = ''
+
+# [daily_hero]
+# max_retries = 10
