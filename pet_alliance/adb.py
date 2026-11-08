@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 import json
 import os
+import re
 import shutil
 import struct
 import subprocess
@@ -138,8 +140,14 @@ class AndroidDevice:
         self.adb_path = adb_path
         self.serial = serial
         self.timeout = timeout
+        # A scheduler can stop between the individual commands of a restart.
+        self.before_command: Callable[[], None] | None = None
 
-    def _adb(self, *arguments: str, targeted: bool = True) -> bytes:
+    def _adb(
+        self, *arguments: str, targeted: bool = True, check_shell_result: bool = False,
+    ) -> bytes:
+        if self.before_command is not None:
+            self.before_command()
         command = [self.adb_path]
         if targeted:
             if self.serial is None:
@@ -158,6 +166,16 @@ class AndroidDevice:
         if result.returncode:
             detail = (result.stderr or result.stdout).decode("utf-8", errors="replace").strip()
             raise AutomationError(f"ADB 操作失败：{detail}")
+        if check_shell_result:
+            # Android's am/cmd can report an error while adb itself exits with 0.
+            detail = (result.stdout + b"\n" + result.stderr).decode(
+                "utf-8", errors="replace",
+            ).strip()
+            if re.search(
+                r"(?im)^\s*(?:error\b|exception\b|security exception\b|failure\b|"
+                r"(?:java|android)\.[\w.]*Exception\b)", detail,
+            ):
+                raise AutomationError(f"Android 命令失败：{detail}")
         return result.stdout
 
     def devices(self) -> list[tuple[str, str]]:
@@ -190,6 +208,40 @@ class AndroidDevice:
         data = self._adb("exec-out", "screencap", "-p")
         width, height = png_dimensions(data)
         return Screenshot(data, width, height)
+
+    @staticmethod
+    def _check_package(package: str) -> None:
+        if not isinstance(package, str) or not re.fullmatch(
+            r"[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+", package,
+        ):
+            raise AutomationError("游戏包名无效，必须是以点分隔的 Android 包名。")
+
+    def resolve_launcher(self, package: str) -> str:
+        """Resolve the selected app's launcher before making any app changes."""
+        self._check_package(package)
+        output = self._adb(
+            "shell", "cmd", "package", "resolve-activity", "--brief",
+            "-a", "android.intent.action.MAIN", "-c", "android.intent.category.LAUNCHER",
+            package, check_shell_result=True,
+        ).decode("utf-8", errors="replace").strip()
+        component_pattern = (
+            re.escape(package) + r"/\.?[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
+        )
+        components = [line.strip() for line in output.splitlines()
+                      if re.fullmatch(component_pattern, line.strip())]
+        if len(components) != 1:
+            raise AutomationError(f"无法确认游戏 {package} 的启动入口：{output or 'ADB 返回为空'}")
+        return components[0]
+
+    def restart_app(self, package: str) -> None:
+        """Restart only this package on the selected Android device."""
+        component = self.resolve_launcher(package)
+        self._adb("shell", "am", "force-stop", package, check_shell_result=True)
+        output = self._adb(
+            "shell", "am", "start", "-W", "-n", component, check_shell_result=True,
+        ).decode("utf-8", errors="replace").strip()
+        if not re.search(r"(?im)^Status:\s*ok\s*$", output):
+            raise AutomationError(f"游戏 {package} 启动未确认成功：{output or 'ADB 返回为空'}")
 
     @staticmethod
     def _check_coordinates(*coordinates: int) -> None:

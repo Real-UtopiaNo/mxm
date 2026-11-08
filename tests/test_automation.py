@@ -102,6 +102,94 @@ class AutomationTests(unittest.TestCase):
             device.key("back; reboot")
         run.assert_not_called()
 
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_restart_only_selected_game_and_device_after_resolving_launcher(self, run):
+        package = "com.monster.mxm1old"
+        component = f"{package}/org.cocos2dx.lua.AppActivity"
+        run.side_effect = [
+            subprocess.CompletedProcess([], 0, f"priority=0\n{component}\n".encode(), b""),
+            subprocess.CompletedProcess([], 0, b"", b""),
+            subprocess.CompletedProcess([], 0, b"Starting: Intent\nStatus: ok\nComplete\n", b""),
+        ]
+        AndroidDevice("adb.exe", "emulator-5570").restart_app(package)
+        prefix = ["adb.exe", "-s", "emulator-5570", "shell"]
+        self.assertEqual([call.args[0] for call in run.call_args_list], [
+            prefix + ["cmd", "package", "resolve-activity", "--brief", "-a",
+                      "android.intent.action.MAIN", "-c", "android.intent.category.LAUNCHER", package],
+            prefix + ["am", "force-stop", package],
+            prefix + ["am", "start", "-W", "-n", component],
+        ])
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_invalid_package_rejected_without_adb_including_dry_run(self, run):
+        device = self.device()
+        ctx = ScriptContext(device, Path("unused"), dry_run=True)
+        for package in (None, "", "android", "com.game;reboot", "com.game$(reboot)",
+                        "com.game\nreboot", "com.game other", "--user", "com..game"):
+            with self.subTest(package=package):
+                for action in (device.resolve_launcher, device.restart_app, ctx.restart_app):
+                    with self.assertRaises(AutomationError):
+                        action(package)
+        run.assert_not_called()
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_restart_dry_run_logs_without_resolve_stop_or_start(self, run):
+        ctx = ScriptContext(self.device(), Path("unused"), dry_run=True)
+        with self.assertLogs("pet_alliance", level="INFO") as log:
+            ctx.restart_app("com.monster.mxm1old")
+        self.assertIn("[预演] 重启游戏 com.monster.mxm1old", log.output[0])
+        run.assert_not_called()
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_missing_or_other_package_launcher_never_stops_game(self, run):
+        for output in (b"No activity found\n", b"com.other.game/.MainActivity\n",
+                       b"com.monster.mxm1old/.MainActivity;reboot\n", b""):
+            with self.subTest(output=output):
+                run.reset_mock()
+                run.return_value = subprocess.CompletedProcess([], 0, output, b"")
+                with self.assertRaisesRegex(AutomationError, "启动入口"):
+                    self.device().restart_app("com.monster.mxm1old")
+                self.assertEqual(run.call_count, 1)
+                self.assertEqual(run.call_args.args[0][4:7], ["cmd", "package", "resolve-activity"])
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_force_stop_failure_preserves_error_and_never_starts(self, run):
+        run.side_effect = [
+            subprocess.CompletedProcess([], 0, b"com.monster.mxm1old/.MainActivity\n", b""),
+            subprocess.CompletedProcess([], 0, b"", b"Security exception: Permission Denial"),
+        ]
+        with self.assertRaisesRegex(AutomationError, "Permission Denial"):
+            self.device().restart_app("com.monster.mxm1old")
+        self.assertEqual(run.call_count, 2)
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_start_checks_android_error_and_status_even_when_adb_succeeds(self, run):
+        for stdout, stderr in (
+            (b"Error type 3\nError: Activity class does not exist.", b""),
+            (b"", b"Error: Activity not started, unable to resolve Intent"),
+            (b"Starting: Intent\nStatus: timeout\n", b""),
+        ):
+            with self.subTest(stdout=stdout, stderr=stderr):
+                run.reset_mock()
+                run.side_effect = [
+                    subprocess.CompletedProcess([], 0, b"com.monster.mxm1old/.MainActivity\n", b""),
+                    subprocess.CompletedProcess([], 0, b"", b""),
+                    subprocess.CompletedProcess([], 0, stdout, stderr),
+                ]
+                with self.assertRaises(AutomationError) as error:
+                    self.device().restart_app("com.monster.mxm1old")
+                expected = (stderr or stdout).decode().strip()
+                self.assertIn(expected, str(error.exception))
+                self.assertEqual(run.call_count, 3)
+
+    @patch("pet_alliance.adb.subprocess.run")
+    def test_context_real_restart_calls_device_and_propagates_failure(self, run):
+        run.return_value = subprocess.CompletedProcess([], 1, b"", b"device offline")
+        ctx = ScriptContext(self.device(), Path("unused"))
+        with self.assertRaisesRegex(AutomationError, "device offline"):
+            ctx.restart_app("com.monster.mxm1old")
+        self.assertEqual(run.call_count, 1)
+
     def test_local_script_discovery_and_execution(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

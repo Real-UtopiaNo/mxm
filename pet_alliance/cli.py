@@ -34,6 +34,14 @@ def parser() -> argparse.ArgumentParser:
     key = commands.add_parser("key", help="模拟系统按键")
     key.add_argument("name", choices=("back", "home", "enter"))
     commands.add_parser("scripts", help="列出可用任务脚本")
+    scheduler = commands.add_parser("scheduler", help="打开全天托管面板；点击启动后才操作游戏")
+    # Accept both the common global-option order and options after scheduler.
+    # Suppressed defaults preserve any value already parsed on the root parser.
+    scheduler.add_argument("--config", type=Path, default=argparse.SUPPRESS, help="显式配置文件")
+    scheduler.add_argument("--adb", default=argparse.SUPPRESS, help="ADB 可执行文件路径")
+    scheduler.add_argument("--serial", default=argparse.SUPPRESS, help="模拟器设备编号")
+    scheduler.add_argument("--dry-run", action="store_true", default=argparse.SUPPRESS,
+                           help="调度器不支持预演；此选项会报错退出")
     task = commands.add_parser("run", help="执行 scripts 目录中的独立脚本")
     task.add_argument("name", help="脚本文件名，不含 .py")
     return root
@@ -47,6 +55,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     try:
+        if args.command == "scheduler":
+            if args.dry_run:
+                raise AutomationError("调度器不支持 --dry-run；可打开面板查看状态，点击启动后才会操作游戏。")
+            from .scheduler_ui import main as scheduler_main
+
+            scheduler_args = []
+            for option, value in (("--config", args.config), ("--adb", args.adb), ("--serial", args.serial)):
+                if value is not None:
+                    scheduler_args.extend((option, str(value)))
+            return scheduler_main(scheduler_args)
         config_path = (args.config or PROJECT_ROOT / "automation.toml").resolve()
         config = load_config(config_path, include_local=args.config is None)
         base = config_path.parent
@@ -67,11 +85,27 @@ def main(argv: list[str] | None = None) -> int:
             print("\n".join(f"{serial}\t{state}" for serial, state in devices) or "未发现设备。")
             return 0
         device.connect()
-        ctx = ScriptContext(device, screenshots_dir, args.dry_run, settings=config, project_root=base)
+        from .run_logs import RunLogRetention
+
+        state_path = base / config.get("scheduler", {}).get("state_file", "artifacts/scheduler/state.json")
+        run_logs = RunLogRetention(base, protected_paths=(state_path, config_path)) if args.command == "run" else None
+        if run_logs is not None:
+            run_logs.maintain()
+        ctx = ScriptContext(device, screenshots_dir, args.dry_run, settings=config, project_root=base,
+                            config_path=config_path, use_local_config=args.config is None,
+                            run_logs=run_logs)
         if args.command == "doctor":
+            from .arena_vision import PointsArenaVision
+            from .dragon_vision import DragonVision
+            from .hero_reset_vision import HeroResetVision
+            from .check_arena_vision import CheckArenaVision
             from .vision import TemplateBank, VisualFrame
 
             bank = TemplateBank(base / "assets" / "daily_hero")
+            PointsArenaVision(base / "assets" / "points_arena")
+            DragonVision(base / "assets" / "slay_dragon")
+            HeroResetVision(base / "assets" / "daily_hero_reset")
+            CheckArenaVision(base / "assets" / "check_arena")
             scripts = list_scripts(scripts_dir)
             if "Daily_Hero" not in scripts:
                 raise AutomationError("缺少 scripts/Daily_Hero.py，请完整 clone 仓库。")
@@ -79,6 +113,10 @@ def main(argv: list[str] | None = None) -> int:
             VisualFrame.from_screenshot(screenshot)
             path = screenshot.save(screenshots_dir / "doctor.png")
             print(f"检查通过：{len(bank.images)} 个视觉模板，{screenshot.width}×{screenshot.height} 横屏。")
+            print("积分赛视觉素材：检查通过。")
+            print("屠龙战视觉素材：检查通过。")
+            print("英雄副本重置视觉素材：检查通过。")
+            print("关卡擂主检查视觉素材：检查通过。")
             print(f"ADB：{device.adb_path}\n设备：{device.serial}\n截图：{path}")
         elif args.command == "capture":
             if args.output:

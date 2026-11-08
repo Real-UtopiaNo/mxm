@@ -57,7 +57,7 @@
         370
       ],
       "threshold": 0.86,
-      "max_error": 30
+      "max_error": 35
     },
     "hero_dragon": {
       "file": "hero_dragon.png",
@@ -157,6 +157,12 @@
       ],
       "threshold": 0.86,
       "max_error": 30
+    },
+    "moru_midpoint": {
+      "file": "moru_midpoint.png",
+      "search": [1400, 0, 1920, 155],
+      "threshold": 0.94,
+      "max_error": 18
     },
     "marker": {
       "file": "marker.png",

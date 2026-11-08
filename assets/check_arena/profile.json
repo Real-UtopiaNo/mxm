@@ -1,0 +1,314 @@
+{
+  "source_size": [
+    1374,
+    772
+  ],
+  "templates": {
+    "map_anchor": {
+      "file": "map_anchor.png",
+      "source_capture": "tests/fixtures/check_arena/17.png",
+      "source_box": [819, 116, 871, 159],
+      "search": [
+        811,
+        108,
+        879,
+        167
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "dungeon_panel": {
+      "file": "dungeon_panel.png",
+      "search": [
+        310,
+        122,
+        462,
+        258
+      ],
+      "threshold": 0.91,
+      "max_error": 30
+    },
+    "dungeon_close": {
+      "file": "dungeon_close.png",
+      "search": [
+        979,
+        140,
+        1050,
+        215
+      ],
+      "threshold": 0.91,
+      "max_error": 22,
+      "guards": [
+        "dungeon_panel"
+      ]
+    },
+    "arena_button": {
+      "file": "arena_button.png",
+      "search": [
+        848,
+        590,
+        1033,
+        686
+      ],
+      "threshold": 0.91,
+      "max_error": 23,
+      "guards": [
+        "dungeon_panel"
+      ]
+    },
+    "guardian_panel": {
+      "file": "guardian_panel.png",
+      "search": [
+        387,
+        140,
+        639,
+        206
+      ],
+      "threshold": 0.91,
+      "max_error": 22
+    },
+    "guardian_close": {
+      "file": "guardian_close.png",
+      "search": [
+        992,
+        142,
+        1053,
+        205
+      ],
+      "threshold": 0.91,
+      "max_error": 22,
+      "guards": [
+        "guardian_panel"
+      ]
+    },
+    "challenge_guardian": {
+      "file": "challenge_guardian.png",
+      "search": [
+        572,
+        588,
+        799,
+        669
+      ],
+      "threshold": 0.91,
+      "max_error": 22,
+      "guards": [
+        "guardian_panel"
+      ]
+    },
+    "dungeon_ghost": {
+      "file": "dungeon_ghost.png",
+      "search": [
+        404,
+        203,
+        521,
+        244
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_research": {
+      "file": "dungeon_research.png",
+      "search": [
+        795,
+        203,
+        913,
+        244
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_worms": {
+      "file": "dungeon_worms.png",
+      "search": [
+        216,
+        306,
+        331,
+        347
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_prison": {
+      "file": "dungeon_prison.png",
+      "source_capture": "tests/fixtures/check_arena/demon_daily_fresh.jpg",
+      "source_box": [1039, 270, 1185, 294],
+      "search": [
+        1031,
+        262,
+        1193,
+        302
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_castle": {
+      "file": "dungeon_castle.png",
+      "search": [
+        633,
+        368,
+        723,
+        407
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_coco": {
+      "file": "dungeon_coco.png",
+      "search": [
+        898,
+        388,
+        997,
+        428
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_train": {
+      "file": "dungeon_train.png",
+      "search": [
+        191,
+        510,
+        305,
+        552
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_grave": {
+      "file": "dungeon_grave.png",
+      "search": [
+        406,
+        543,
+        522,
+        586
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_church": {
+      "file": "dungeon_church.png",
+      "search": [
+        629,
+        610,
+        748,
+        652
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "dungeon_town": {
+      "file": "dungeon_town.png",
+      "search": [
+        950,
+        582,
+        1044,
+        623
+      ],
+      "threshold": 0.87,
+      "max_error": 24,
+      "guards": [
+        "map_anchor"
+      ]
+    },
+    "claim_success_title": {
+      "file": "claim_success_title.png",
+      "search": [
+        630,
+        205,
+        740,
+        270
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "claim_success": {
+      "file": "claim_success.png",
+      "search": [
+        520,
+        373,
+        855,
+        430
+      ],
+      "threshold": 0.94,
+      "max_error": 18,
+      "guards": [
+        "claim_success_title"
+      ]
+    }
+  },
+  "dungeons": [
+    {
+      "name": "鬼木断崖",
+      "template": "dungeon_ghost"
+    },
+    {
+      "name": "瘴气科研",
+      "template": "dungeon_research"
+    },
+    {
+      "name": "病态虫巢",
+      "template": "dungeon_worms"
+    },
+    {
+      "name": "绝望监狱",
+      "template": "dungeon_prison"
+    },
+    {
+      "name": "恶魔城",
+      "template": "dungeon_castle"
+    },
+    {
+      "name": "COCO号",
+      "template": "dungeon_coco"
+    },
+    {
+      "name": "冥火特快",
+      "template": "dungeon_train"
+    },
+    {
+      "name": "死亡墓地",
+      "template": "dungeon_grave"
+    },
+    {
+      "name": "荒弃圣堂",
+      "template": "dungeon_church"
+    },
+    {
+      "name": "永夜镇",
+      "template": "dungeon_town"
+    }
+  ],
+  "players": {
+    "1111": {
+      "map_file": "owner_map_1111.png",
+      "guardian_file": "owner_guardian_1111.png"
+    }
+  }
+}

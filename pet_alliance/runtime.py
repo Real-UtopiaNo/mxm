@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from datetime import datetime
 import importlib.util
 import logging
@@ -17,6 +18,10 @@ class ScriptContext:
     def __init__(
         self, device: AndroidDevice, screenshots_dir: Path, dry_run: bool = False,
         *, settings: dict | None = None, project_root: Path | None = None,
+        config_path: Path | None = None, use_local_config: bool = True,
+        control: Callable[[str], None] | None = None,
+        checkpoint_callback: Callable[[str, dict], None] | None = None,
+        run_logs=None,
     ):
         self.device = device
         self.screenshots_dir = screenshots_dir
@@ -24,9 +29,25 @@ class ScriptContext:
         self.log = logging.getLogger("pet_alliance")
         self.settings = settings or {}
         self.project_root = project_root or Path(__file__).resolve().parent.parent
+        self.config_path = config_path or self.project_root / "automation.toml"
+        self.use_local_config = use_local_config
+        self.control = control
+        self.checkpoint_callback = checkpoint_callback
+        self.run_logs = run_logs
+
+    def _cooperate(self, operation: str) -> None:
+        if self.run_logs is not None:
+            self.run_logs.maintain()
+        if self.control is not None:
+            self.control(operation)
+
+    def checkpoint(self, name: str, **payload) -> None:
+        if self.checkpoint_callback is not None:
+            self.checkpoint_callback(name, payload)
 
     def capture(self) -> Screenshot:
         """Return original PNG bytes and dimensions for future image recognition."""
+        self._cooperate("capture")
         return self.device.capture()
 
     def screenshot(self, name: str = "capture") -> Path:
@@ -39,12 +60,14 @@ class ScriptContext:
         return path
 
     def tap(self, x: int, y: int) -> None:
+        self._cooperate("tap")
         self.device._check_coordinates(x, y)
         self.log.info("%s点击 (%d, %d)", "[预演] " if self.dry_run else "", x, y)
         if not self.dry_run:
             self.device.tap(x, y)
 
     def swipe(self, x1: int, y1: int, x2: int, y2: int, duration_ms: int = 300) -> None:
+        self._cooperate("swipe")
         self.device._check_coordinates(x1, y1, x2, y2)
         if type(duration_ms) is not int or duration_ms < 1:
             raise AutomationError("滑动时长必须是正整数（毫秒）。")
@@ -56,17 +79,33 @@ class ScriptContext:
             self.device.swipe(x1, y1, x2, y2, duration_ms)
 
     def key(self, name: str) -> None:
+        self._cooperate("key")
         if name not in {"back", "home", "enter"}:
             raise AutomationError("按键仅支持 back、home、enter。")
         self.log.info("%s按键 %s", "[预演] " if self.dry_run else "", name)
         if not self.dry_run:
             self.device.key(name)
 
-    @staticmethod
-    def wait(seconds: float) -> None:
+    def restart_app(self, package: str) -> None:
+        self._cooperate("restart_app")
+        self.device._check_package(package)
+        self.log.info("%s重启游戏 %s", "[预演] " if self.dry_run else "", package)
+        if not self.dry_run:
+            self.device.restart_app(package)
+
+    def wait(self, seconds: float) -> None:
         if seconds < 0:
             raise AutomationError("等待时间不能为负数。")
-        time.sleep(seconds)
+        if self.control is None and self.run_logs is None:
+            time.sleep(seconds)
+            return
+        self._cooperate("wait")
+        remaining = seconds
+        while remaining > 0:
+            delay = min(remaining, .25 if self.control is not None else 30)
+            time.sleep(delay)
+            remaining -= delay
+            self._cooperate("wait")
 
 
 def list_scripts(directory: Path) -> list[str]:

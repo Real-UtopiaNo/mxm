@@ -9,16 +9,57 @@ timeout = 30
 screenshots_dir = "artifacts/screenshots"
 scripts_dir = "scripts"
 
+[scheduler]
+# 全天调度状态按北京时间零点换日；暂停和重开窗口后仍保留。
+state_file = "artifacts/scheduler/state.json"
+poll_interval = 1
+# 魔都所有候选副本都由他人占擂时，继续其他任务，五分钟后再查。
+arena_retry_seconds = 300
+
 [daily_hero]
+# 是否每完整通关三个英雄副本参加一次积分赛；同时控制英雄重置与占擂补打英雄。
+points_arena_enabled = true
+# 每完整通关三个英雄副本，参加一次积分赛；只挑战列表中的完整玩家名。
+# 每场从头按顺序找，优先选择当前可见的第一个；名单长度不限，共挑战三场。
+target_players = ["Hello", "Hell", "coco"]
 # 首次挑战之外，最多额外重试 10 次；同一副本累计失败 11 次后放弃。
 max_retries = 10
-poll_interval = 0.35
+poll_interval = 0.8
 # 任意两次点击至少间隔 1 秒；点击后观察 2 秒，原页面仍在才补点。
-min_click_interval = 1.0
-click_retry_interval = 2.0
+min_click_interval = 1
+click_retry_interval = 1.2
 # 点击未生效最多补点 3 次，与战斗失败的重试次数分别计数。
 max_click_retries = 3
 transition_timeout = 30
 max_runtime = 7200
 # 0 表示遍历所有未完成副本；调试时可设为 1。
 max_dungeons = 0
+
+[daily_hero_reset]
+# 仅重置并重打这些区域，按列表顺序处理；不要求区域或副本仍有红点。
+regions = ["西部大陆", "环形领地", "诅咒荒野"]
+# 所有区域处理后，再按顺序重置这些单独副本；格式为“区域-副本”。
+dungeons = ["奇幻梦境-龙萌幻境"]
+# 其余参数沿用 daily_hero，也可在此覆盖；每通关三个副本照常参加积分赛。
+
+[check_arena]
+# 按顺序检查魔都副本；本人占擂时读取守护时长，空位则直接占擂。
+arena_list = ["COCO号", "恶魔城", "鬼木断崖", "瘴气科研", "病态虫巢", "绝望监狱", "冥火特快", "死亡墓地", "永夜镇", "荒弃圣堂"]
+player_name = "1111"
+# 本人已有擂主时自动写入带日期与+08:00时区的结束时间；默认保存到local覆盖文件。
+arena_expired_time = ""
+arena_dungeon = ""
+
+[slay_dragon]
+# 每轮监测间隔5秒；恢复流程的截图/补点节奏默认沿用daily_hero。
+package = "com.monster.mxm1old"
+monitor_interval = 5
+login_timeout = 90
+town_timeout = 90
+# 到达天星镇后，登录通知与屠龙战入口共用此超时，不分别计时。
+cloud_timeout = 300
+# 北京时间每日开场时间，每场持续1小时；启动或运行时离开活动区间则等待下一场再重启。
+start_times = ["09:00", "10:00", "12:00", "13:00", "14:00", "15:00", "18:00", "19:00", "20:00", "21:00"]
+# 0表示持续监测，按Ctrl+C停止；可设为有限次数/秒数进行验证。
+max_checks = 0
+max_runtime = 0

@@ -1,0 +1,340 @@
+{
+  "source_size": [
+    752,
+    423
+  ],
+  "templates": {
+    "battle_scene": {
+      "file": "battle_scene.png",
+      "source_capture": "8.png",
+      "source_box": [
+        230,
+        140,
+        276,
+        178
+      ],
+      "search": [
+        120,
+        30,
+        620,
+        230
+      ],
+      "threshold": 0.91,
+      "max_error": 15,
+      "guards": [],
+      "variants": [
+        "battle_scene_upper.png"
+      ]
+    },
+    "assistant_page": {
+      "file": "assistant_page.png",
+      "source_capture": "8.png",
+      "source_box": [
+        632,
+        75,
+        700,
+        90
+      ],
+      "search": [
+        610,
+        62,
+        723,
+        103
+      ],
+      "threshold": 0.9,
+      "max_error": 16,
+      "guards": [
+        "battle_scene"
+      ]
+    },
+    "stop_hosting": {
+      "file": "stop_hosting.png",
+      "source_capture": "8.png",
+      "source_box": [
+        627,
+        250,
+        688,
+        265
+      ],
+      "search": [
+        610,
+        238,
+        708,
+        279
+      ],
+      "threshold": 0.91,
+      "max_error": 24,
+      "guards": [
+        "battle_scene",
+        "assistant_page"
+      ]
+    },
+    "start_hosting": {
+      "file": "start_hosting.png",
+      "source_capture": "9.png",
+      "source_box": [
+        627,
+        250,
+        688,
+        265
+      ],
+      "search": [
+        610,
+        238,
+        708,
+        279
+      ],
+      "threshold": 0.91,
+      "max_error": 24,
+      "guards": [
+        "battle_scene",
+        "assistant_page"
+      ]
+    },
+    "login_page": {
+      "file": "login_page.png",
+      "source_capture": "10.png",
+      "source_box": [
+        10,
+        30,
+        206,
+        83
+      ],
+      "search": [
+        0,
+        10,
+        224,
+        102
+      ],
+      "threshold": 0.91,
+      "max_error": 16,
+      "guards": []
+    },
+    "login_enter": {
+      "file": "login_enter.png",
+      "source_capture": "10.png",
+      "source_box": [
+        349,
+        337,
+        394,
+        364
+      ],
+      "search": [
+        308,
+        324,
+        440,
+        378
+      ],
+      "threshold": 0.91,
+      "max_error": 16,
+      "guards": [
+        "login_page"
+      ]
+    },
+    "notice": {
+      "file": "notice.png",
+      "source_capture": "11.png",
+      "source_box": [
+        337,
+        389,
+        416,
+        402
+      ],
+      "search": [
+        318,
+        379,
+        434,
+        411
+      ],
+      "threshold": 0.91,
+      "max_error": 24,
+      "guards": [
+        "notice_page"
+      ]
+    },
+    "town": {
+      "file": "town.png",
+      "source_capture": "12.png",
+      "source_box": [
+        313,
+        132,
+        378,
+        196
+      ],
+      "search": [
+        294,
+        116,
+        395,
+        209
+      ],
+      "threshold": 0.91,
+      "max_error": 16,
+      "guards": [],
+      "alternatives": [
+        {
+          "file": "town_family_core.png",
+          "source_capture": "tests/fixtures/pet_loadouts/town.png",
+          "source_box": [
+            326,
+            139,
+            351,
+            173
+          ],
+          "search": [
+            321,
+            134,
+            356,
+            178
+          ],
+          "threshold": 0.94,
+          "max_error": 12
+        }
+      ]
+    },
+    "dragon_entry": {
+      "file": "dragon_entry.png",
+      "source_capture": "12.png",
+      "source_box": [
+        443,
+        135,
+        507,
+        157
+      ],
+      "search": [
+        421,
+        112,
+        529,
+        177
+      ],
+      "threshold": 0.91,
+      "max_error": 16,
+      "guards": [
+        "town"
+      ]
+    },
+    "dragon_npc": {
+      "file": "dragon_npc.png",
+      "source_capture": "13.png",
+      "source_box": [
+        308,
+        117,
+        369,
+        134
+      ],
+      "search": [
+        100,
+        86,
+        565,
+        201
+      ],
+      "threshold": 0.91,
+      "max_error": 30,
+      "guards": [
+        "battle_scene"
+      ],
+      "variants": [
+        "dragon_npc_native.png",
+        "dragon_npc_entry.png"
+      ]
+    },
+    "quest_mark": {
+      "file": "quest_mark.png",
+      "source_capture": "8.png",
+      "source_box": [
+        321,
+        73,
+        355,
+        112
+      ],
+      "search": [
+        100,
+        57,
+        565,
+        152
+      ],
+      "threshold": 0.91,
+      "max_error": 16,
+      "guards": [
+        "battle_scene"
+      ]
+    },
+    "notice_page": {
+      "file": "notice_page.png",
+      "source_capture": "11.png",
+      "source_box": [
+        300,
+        77,
+        443,
+        131
+      ],
+      "search": [
+        282,
+        67,
+        458,
+        142
+      ],
+      "threshold": 0.91,
+      "max_error": 20,
+      "guards": []
+    },
+    "town_eye": {
+      "file": "town_eye.png",
+      "source_capture": "12.png",
+      "source_box": [
+        462,
+        81,
+        486,
+        104
+      ],
+      "search": [
+        457,
+        76,
+        491,
+        109
+      ],
+      "threshold": 0.94,
+      "max_error": 12,
+      "guards": []
+    },
+    "announcement_page": {
+      "file": "announcement_page.png",
+      "source_capture": "tests/fixtures/slay_dragon/announcement.png",
+      "source_box": [
+        419,
+        50,
+        496,
+        94
+      ],
+      "search": [
+        406,
+        39,
+        511,
+        106
+      ],
+      "threshold": 0.94,
+      "max_error": 16,
+      "guards": []
+    },
+    "announcement_close": {
+      "file": "announcement_close.png",
+      "source_capture": "tests/fixtures/slay_dragon/announcement.png",
+      "source_box": [
+        697,
+        48,
+        729,
+        84
+      ],
+      "search": [
+        683,
+        37,
+        742,
+        96
+      ],
+      "threshold": 0.94,
+      "max_error": 16,
+      "guards": [
+        "announcement_page"
+      ]
+    }
+  }
+}

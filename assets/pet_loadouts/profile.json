@@ -1,0 +1,335 @@
+{
+  "source_size": [
+    960,
+    540
+  ],
+  "templates": {
+    "town_page": {
+      "file": "town_page.png",
+      "source_capture": "tests/fixtures/pet_loadouts/town.png",
+      "source_box": [
+        590,
+        103,
+        620,
+        133
+      ],
+      "search": [
+        584,
+        97,
+        626,
+        139
+      ],
+      "threshold": 0.94,
+      "max_error": 12,
+      "guards": [],
+      "alternatives": [
+        {
+          "file": "town_family_core.png",
+          "source_capture": "tests/fixtures/pet_loadouts/town.png",
+          "source_box": [
+            416,
+            178,
+            448,
+            221
+          ],
+          "search": [
+            411,
+            173,
+            453,
+            226
+          ],
+          "threshold": 0.94,
+          "max_error": 12
+        }
+      ]
+    },
+    "town_pet_button": {
+      "file": "town_pet_button.png",
+      "source_capture": "tests/fixtures/pet_loadouts/town.png",
+      "source_box": [
+        332,
+        10,
+        374,
+        53
+      ],
+      "search": [
+        327,
+        5,
+        379,
+        58
+      ],
+      "threshold": 0.9,
+      "max_error": 18,
+      "guards": [
+        "town_page"
+      ]
+    },
+    "pet_page": {
+      "file": "pet_page.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        241,
+        18,
+        307,
+        38
+      ],
+      "search": [
+        236,
+        13,
+        312,
+        43
+      ],
+      "threshold": 0.93,
+      "max_error": 17,
+      "guards": []
+    },
+    "pet_backup_title": {
+      "file": "pet_backup_title.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        680,
+        17,
+        746,
+        39
+      ],
+      "search": [
+        675,
+        12,
+        751,
+        44
+      ],
+      "threshold": 0.93,
+      "max_error": 17,
+      "guards": [
+        "pet_page"
+      ]
+    },
+    "pet_close": {
+      "file": "pet_close.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        899,
+        6,
+        940,
+        48
+      ],
+      "search": [
+        894,
+        1,
+        945,
+        53
+      ],
+      "threshold": 0.92,
+      "max_error": 17,
+      "guards": [
+        "pet_page"
+      ]
+    },
+    "group_farm": {
+      "file": "group_farm.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        160,
+        344,
+        200,
+        364
+      ],
+      "search": [
+        147,
+        337,
+        903,
+        368
+      ],
+      "threshold": 0.9,
+      "max_error": 17,
+      "guards": [
+        "pet_page"
+      ]
+    },
+    "group_dragon": {
+      "file": "group_dragon.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        375,
+        344,
+        416,
+        364
+      ],
+      "search": [
+        147,
+        337,
+        903,
+        368
+      ],
+      "threshold": 0.9,
+      "max_error": 17,
+      "guards": [
+        "pet_page"
+      ]
+    },
+    "group_pvp": {
+      "file": "group_pvp.png",
+      "source_capture": "tests/fixtures/pet_loadouts/pets.png",
+      "source_box": [
+        589,
+        344,
+        636,
+        364
+      ],
+      "search": [
+        147,
+        337,
+        903,
+        368
+      ],
+      "threshold": 0.9,
+      "max_error": 17,
+      "guards": [
+        "pet_page"
+      ]
+    },
+    "preset_page": {
+      "file": "preset_page.png",
+      "source_capture": "tests/fixtures/pet_loadouts/preset_farm.png",
+      "source_box": [
+        795,
+        272,
+        837,
+        314
+      ],
+      "search": [
+        790,
+        267,
+        842,
+        319
+      ],
+      "threshold": 0.92,
+      "max_error": 17,
+      "guards": []
+    },
+    "preset_back": {
+      "file": "preset_back.png",
+      "source_capture": "tests/fixtures/pet_loadouts/preset_farm.png",
+      "source_box": [
+        795,
+        272,
+        837,
+        314
+      ],
+      "search": [
+        790,
+        267,
+        842,
+        319
+      ],
+      "threshold": 0.92,
+      "max_error": 17,
+      "guards": [
+        "preset_page"
+      ]
+    },
+    "preset_farm_title": {
+      "file": "preset_farm_title.png",
+      "source_capture": "tests/fixtures/pet_loadouts/preset_farm.png",
+      "source_box": [
+        234,
+        274,
+        288,
+        302
+      ],
+      "search": [
+        229,
+        269,
+        293,
+        307
+      ],
+      "threshold": 0.91,
+      "max_error": 17,
+      "guards": [
+        "preset_page"
+      ]
+    },
+    "apply": {
+      "file": "apply.png",
+      "source_capture": "tests/fixtures/pet_loadouts/preset_farm.png",
+      "source_box": [
+        693,
+        439,
+        798,
+        477
+      ],
+      "search": [
+        688,
+        434,
+        803,
+        482
+      ],
+      "threshold": 0.92,
+      "max_error": 18,
+      "guards": [
+        "preset_page"
+      ]
+    },
+    "confirm_page": {
+      "file": "confirm_page.png",
+      "source_capture": "tests/fixtures/pet_loadouts/confirm.png",
+      "source_box": [
+        362,
+        267,
+        599,
+        292
+      ],
+      "search": [
+        357,
+        262,
+        604,
+        297
+      ],
+      "threshold": 0.93,
+      "max_error": 17,
+      "guards": []
+    },
+    "confirm_button": {
+      "file": "confirm_button.png",
+      "source_capture": "tests/fixtures/pet_loadouts/confirm.png",
+      "source_box": [
+        355,
+        364,
+        448,
+        400
+      ],
+      "search": [
+        350,
+        359,
+        453,
+        405
+      ],
+      "threshold": 0.92,
+      "max_error": 18,
+      "guards": [
+        "confirm_page"
+      ]
+    },
+    "cancel_button": {
+      "file": "cancel_button.png",
+      "source_capture": "tests/fixtures/pet_loadouts/confirm.png",
+      "source_box": [
+        507,
+        364,
+        600,
+        401
+      ],
+      "search": [
+        502,
+        359,
+        605,
+        406
+      ],
+      "threshold": 0.92,
+      "max_error": 18,
+      "guards": [
+        "confirm_page"
+      ]
+    }
+  }
+}

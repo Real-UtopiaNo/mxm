@@ -1,0 +1,254 @@
+{
+  "reference_size": [
+    1920,
+    1080
+  ],
+  "templates": {
+    "reset": {
+      "file": "reset.png",
+      "search": [
+        805,
+        790,
+        1130,
+        990
+      ],
+      "threshold": 0.9,
+      "max_error": 22
+    },
+    "reset_disabled": {
+      "file": "reset_disabled.png",
+      "search": [
+        805,
+        790,
+        1130,
+        990
+      ],
+      "threshold": 0.9,
+      "max_error": 22
+    },
+    "reset_dialog": {
+      "file": "reset_dialog.png",
+      "search": [
+        882,
+        279,
+        1042,
+        384
+      ],
+      "threshold": 0.92,
+      "max_error": 18
+    },
+    "confirm_reset": {
+      "file": "confirm_reset.png",
+      "search": [
+        680,
+        690,
+        940,
+        840
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "entrance_left": {
+      "file": "entrance_left.png",
+      "search": [
+        115,
+        200,
+        1710,
+        1020
+      ],
+      "threshold": 0.86,
+      "max_error": 40
+    },
+    "reset_cost_50": {
+      "file": "reset_cost_50.png",
+      "search": [
+        1085,
+        480,
+        1185,
+        545
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "reset_cost_10": {
+      "file": "reset_cost_10.png",
+      "search": [
+        1085,
+        480,
+        1185,
+        545
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "reset_cost_10_native": {
+      "file": "reset_cost_10_native.png",
+      "search": [
+        1085,
+        480,
+        1185,
+        545
+      ],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "reset_dialog_body": {
+      "file": "reset_dialog_body.png",
+      "search": [
+        661,
+        514,
+        1225,
+        653
+      ],
+      "threshold": 0.9,
+      "max_error": 18
+    },
+    "reset_dialog_action": {
+      "file": "reset_dialog_action.png",
+      "search": [
+        661,
+        463,
+        1054,
+        560
+      ],
+      "threshold": 0.9,
+      "max_error": 18
+    },
+    "reset_dialog_body_wrapped": {
+      "file": "reset_dialog_body_wrapped.png",
+      "source_capture": "tests/fixtures/daily_hero_reset/reset_confirm_300_20261108.jpg",
+      "source_box": [685, 539, 1206, 628],
+      "source_processing": "Resize the real 1920x1080 source to 1280x720, then VisualFrame back to the 1920x1080 reference before cropping.",
+      "search": [661, 514, 1232, 653],
+      "threshold": 0.9,
+      "max_error": 18
+    },
+    "reset_cost_300": {
+      "file": "reset_cost_300.png",
+      "source_capture": "tests/fixtures/daily_hero_reset/reset_confirm_300_20261108.jpg",
+      "source_box": [1099, 491, 1189, 530],
+      "source_processing": "Resize the real 1920x1080 source to 1280x720, then VisualFrame back to the 1920x1080 reference before cropping.",
+      "search": [1085, 480, 1210, 545],
+      "threshold": 0.94,
+      "max_error": 18
+    },
+    "cleared_stamp": {
+      "file": "cleared_stamp.png",
+      "search": [
+        480,
+        460,
+        1425,
+        665
+      ],
+      "threshold": 0.89,
+      "max_error": 22
+    },
+    "dungeon_dream_dragon": {
+      "file": "dungeon_dream_dragon.png",
+      "source_capture": "tests/fixtures/daily_hero/region_dream.jpg",
+      "source_box": [
+        935,
+        716,
+        1066,
+        752
+      ],
+      "source_processing": "Resize the real 1920x1080 source to 1280x720, then VisualFrame back to the 1920x1080 reference before cropping.",
+      "search": [
+        920,
+        700,
+        1080,
+        770
+      ],
+      "threshold": 0.91,
+      "max_error": 18
+    }
+  },
+  "obscured_entrances": [
+    {
+      "anchor": "cursed_landmark",
+      "offset": [
+        62,
+        244,
+        274,
+        313
+      ]
+    }
+  ],
+  "reset_dialog_bodies": ["reset_dialog_body", "reset_dialog_body_wrapped"],
+  "reset_costs": [
+    {
+      "template": "reset_cost_300",
+      "diamonds": 300,
+      "suffix_search": [90, -3, 136, 40]
+    },
+    {
+      "template": "reset_cost_10_native",
+      "diamonds": 10,
+      "suffix_search": [
+        66,
+        -3,
+        112,
+        40
+      ]
+    },
+    {
+      "template": "reset_cost_10",
+      "diamonds": 10,
+      "suffix_search": [
+        66,
+        -3,
+        112,
+        40
+      ]
+    },
+    {
+      "template": "reset_cost_50",
+      "diamonds": 50,
+      "suffix_search": [
+        66,
+        -3,
+        112,
+        40
+      ]
+    }
+  ],
+  "hero_clear_slots": [
+    [
+      480,
+      510,
+      680,
+      665
+    ],
+    [
+      665,
+      460,
+      865,
+      615
+    ],
+    [
+      855,
+      510,
+      1055,
+      665
+    ],
+    [
+      1040,
+      460,
+      1240,
+      615
+    ],
+    [
+      1225,
+      510,
+      1425,
+      665
+    ]
+  ],
+  "dungeons": [
+    {
+      "region": "奇幻梦境",
+      "name": "龙萌幻境",
+      "template": "dungeon_dream_dragon"
+    }
+  ]
+}

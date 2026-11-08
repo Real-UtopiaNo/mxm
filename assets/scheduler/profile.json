@@ -1,0 +1,55 @@
+{
+  "source_size": [
+    752,
+    423
+  ],
+  "templates": {
+    "dragon_town_label": {
+      "file": "dragon_town_label.png",
+      "source_capture": "dragon_town_exit.png",
+      "source_box": [
+        24,
+        272,
+        80,
+        286
+      ],
+      "search": [
+        14,
+        263,
+        94,
+        294
+      ],
+      "threshold": 0.85,
+      "max_error": 35,
+      "guards": [],
+      "variants": [
+        "dragon_town_label_native.png"
+      ]
+    },
+    "dragon_town_portal": {
+      "file": "dragon_town_portal.png",
+      "source_capture": "dragon_town_exit.png",
+      "source_box": [
+        30,
+        319,
+        59,
+        341
+      ],
+      "search": [
+        14,
+        294,
+        77,
+        355
+      ],
+      "threshold": 0.85,
+      "max_error": 35,
+      "guards": [
+        "dragon_town_label"
+      ],
+      "variants": [
+        "dragon_town_portal_npc.png",
+        "dragon_town_portal_native.png"
+      ]
+    }
+  }
+}

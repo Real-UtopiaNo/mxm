@@ -87,7 +87,10 @@ class VisualFrame:
         for match in matches:
             cv2.rectangle(output, (match.x, match.y), (match.x + match.width, match.y + match.height), (0, 255, 0), 2)
         path.parent.mkdir(parents=True, exist_ok=True)
-        ok, encoded = cv2.imencode(".jpg", output, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        extension, parameters = ((".png", [cv2.IMWRITE_PNG_COMPRESSION, 3])
+                                 if path.suffix.lower() == ".png"
+                                 else (".jpg", [cv2.IMWRITE_JPEG_QUALITY, 85]))
+        ok, encoded = cv2.imencode(extension, output, parameters)
         if not ok:
             raise AutomationError("无法保存视觉诊断截图。")
         encoded.tofile(str(path))

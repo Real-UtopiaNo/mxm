@@ -6,3 +6,4 @@ build/
 dist/
 artifacts/
 automation.local.toml
+assets/mxm_accounts.txt

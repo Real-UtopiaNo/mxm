@@ -1,0 +1,344 @@
+{
+  "source_size": [
+    849,
+    477
+  ],
+  "templates": {
+    "world": {
+      "file": "world.png",
+      "search": [
+        70,
+        114,
+        153,
+        192
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "town": {
+      "file": "town.png",
+      "search": [
+        58,
+        205,
+        110,
+        253
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "town_page": {
+      "file": "town_page.png",
+      "source_capture": "tests/fixtures/points_arena/2.png",
+      "source_box": [
+        522,
+        91,
+        548,
+        117
+      ],
+      "search": [
+        517,
+        86,
+        553,
+        122
+      ],
+      "threshold": 0.94,
+      "max_error": 12,
+      "alternatives": [
+        {
+          "file": "town_family_core.png",
+          "source_capture": "tests/fixtures/pet_loadouts/town.png",
+          "source_box": [
+            368,
+            157,
+            396,
+            195
+          ],
+          "search": [
+            363,
+            152,
+            401,
+            200
+          ],
+          "threshold": 0.94,
+          "max_error": 12
+        }
+      ]
+    },
+    "arena": {
+      "file": "arena.png",
+      "search": [
+        258,
+        317,
+        327,
+        403
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "arena_page": {
+      "file": "arena_page.png",
+      "search": [
+        371,
+        105,
+        456,
+        180
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "points": {
+      "file": "points.png",
+      "search": [
+        671,
+        200,
+        741,
+        310
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "exit": {
+      "file": "exit.png",
+      "search": [
+        75,
+        185,
+        155,
+        345
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "lobby": {
+      "file": "lobby.png",
+      "search": [
+        153,
+        153,
+        283,
+        192
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "join": {
+      "file": "join.png",
+      "search": [
+        300,
+        283,
+        399,
+        332
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "close": {
+      "file": "close.png",
+      "search": [
+        679,
+        90,
+        719,
+        131
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "entry_dialog": {
+      "file": "entry_dialog.png",
+      "search": [
+        385,
+        127,
+        467,
+        169
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "confirm_entry": {
+      "file": "confirm_entry.png",
+      "search": [
+        310,
+        316,
+        401,
+        361
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "roster": {
+      "file": "roster.png",
+      "search": [
+        150,
+        63,
+        249,
+        116
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "roster_detail": {
+      "file": "roster_detail.png",
+      "search": [
+        516,
+        65,
+        587,
+        89
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "roster_close": {
+      "file": "roster_close.png",
+      "search": [
+        686,
+        48,
+        726,
+        89
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "result": {
+      "file": "result.png",
+      "search": [
+        371,
+        142,
+        480,
+        180
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "confirm_result": {
+      "file": "confirm_result.png",
+      "search": [
+        497,
+        370,
+        663,
+        414
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "ticket_suffix": {
+      "file": "ticket_suffix.png",
+      "search": [
+        231,
+        377,
+        266,
+        409
+      ],
+      "threshold": 0.86,
+      "max_error": 22
+    },
+    "entry_ticket_message": {
+      "file": "entry_ticket_message.png",
+      "search": [
+        318,
+        233,
+        530,
+        264
+      ],
+      "threshold": 0.86,
+      "max_error": 20
+    }
+  },
+  "players": {
+    "Hell": "player_Hell.png",
+    "Hello": "player_Hello.png",
+    "coco": "player_coco.png"
+  },
+  "digits": {
+    "0": "digit_0.png",
+    "1": "digit_1.png",
+    "2": "digit_2.png",
+    "3": "digit_3.png",
+    "4": "digit_4.png",
+    "5": "digit_5.png"
+  },
+  "name_slots": [
+    [
+      292,
+      201,
+      76,
+      14
+    ],
+    [
+      398,
+      201,
+      76,
+      14
+    ],
+    [
+      505,
+      201,
+      76,
+      14
+    ],
+    [
+      611,
+      201,
+      76,
+      14
+    ],
+    [
+      292,
+      340,
+      76,
+      14
+    ],
+    [
+      398,
+      340,
+      76,
+      14
+    ],
+    [
+      505,
+      340,
+      76,
+      14
+    ],
+    [
+      611,
+      340,
+      76,
+      14
+    ]
+  ],
+  "ticket_search": [
+    219,
+    382,
+    236,
+    403
+  ],
+  "player_variants": {
+    "Hello": [
+      "player_Hello_native.png",
+      {
+        "file": "player_Hello_highres.png",
+        "source_size": [
+          1920,
+          1080
+        ]
+      }
+    ],
+    "coco": [
+      "player_coco_native.png",
+      {
+        "file": "player_coco_highres.png",
+        "source_size": [
+          1920,
+          1080
+        ]
+      }
+    ],
+    "Hell": [
+      {
+        "file": "player_Hell_highres.png",
+        "source_size": [
+          1920,
+          1080
+        ]
+      }
+    ]
+  }
+}
